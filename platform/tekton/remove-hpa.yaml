@@ -1,8 +1,0 @@
-# KIND no trae metrics-server, así que el HPA del webhook nunca puede calcular
-# métricas y Argo CD lo marca Degraded. Con una sola réplica no aporta nada.
-$patch: delete
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: tekton-pipelines-webhook
-  namespace: tekton-pipelines
