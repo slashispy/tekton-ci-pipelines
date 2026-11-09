@@ -13,6 +13,7 @@ platform/tekton/     # lo que instala Argo CD (Application `platform-tekton`)
   kustomization.yaml         # releases oficiales con versión fijada
   config-defaults-patch.yaml # timeout por defecto de los runs
   resource-limits.yaml       # límites de memoria/CPU de cada componente
+  remove-hpa.yaml            # KIND no tiene metrics-server (HPA quedaría Degraded)
 ci/                  # namespace `tekton-ci` (Application `platform-ci`)
   namespace.yaml · limits.yaml · rbac/serviceaccounts.yaml
 docs/                # decisiones y políticas

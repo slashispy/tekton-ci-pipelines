@@ -8,3 +8,4 @@ resources:
 patches:
   - path: config-defaults-patch.yaml
   - path: resource-limits.yaml
+  - path: remove-hpa.yaml
