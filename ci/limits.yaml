@@ -1,0 +1,13 @@
+# Los pods de los Tasks heredan estos valores si el Task no declara recursos (RF2.4, RNF5).
+# El tope por pod evita que un build (Maven, scanner) agote la memoria del nodo KIND.
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: ci-defaults
+  namespace: tekton-ci
+spec:
+  limits:
+    - type: Container
+      defaultRequest: {cpu: 100m, memory: 128Mi}
+      default: {memory: 1Gi}
+      max: {memory: 3Gi}

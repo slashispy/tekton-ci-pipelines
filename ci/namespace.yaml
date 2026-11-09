@@ -1,0 +1,7 @@
+# Namespace donde corren los PipelineRuns (separado de tekton-pipelines, que aloja la plataforma).
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tekton-ci
+  labels:
+    app.kubernetes.io/part-of: tekton-ci-pipelines

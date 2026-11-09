@@ -1,0 +1,116 @@
+# Límites de recursos explícitos para los componentes de Tekton (RF2.4).
+# Los manifiestos oficiales no definen límites en la mayoría de los Deployments
+# y el de resolvers trae un límite de 4Gi, excesivo para un cluster KIND de 12 GB.
+# Valores iniciales; se miden y ajustan en la fase G.6.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-pipelines-controller
+  namespace: tekton-pipelines
+spec:
+  template:
+    spec:
+      containers:
+        - name: tekton-pipelines-controller
+          resources:
+            requests: {cpu: 50m, memory: 128Mi}
+            limits: {memory: 512Mi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-events-controller
+  namespace: tekton-pipelines
+spec:
+  template:
+    spec:
+      containers:
+        - name: tekton-events-controller
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {memory: 256Mi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-pipelines-webhook
+  namespace: tekton-pipelines
+spec:
+  template:
+    spec:
+      containers:
+        - name: webhook
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {memory: 256Mi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-pipelines-remote-resolvers
+  namespace: tekton-pipelines-resolvers
+spec:
+  template:
+    spec:
+      containers:
+        - name: controller
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {memory: 256Mi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-triggers-controller
+  namespace: tekton-pipelines
+spec:
+  template:
+    spec:
+      containers:
+        - name: tekton-triggers-controller
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {memory: 256Mi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-triggers-webhook
+  namespace: tekton-pipelines
+spec:
+  template:
+    spec:
+      containers:
+        - name: webhook
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {memory: 256Mi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-triggers-core-interceptors
+  namespace: tekton-pipelines
+spec:
+  template:
+    spec:
+      containers:
+        - name: tekton-triggers-core-interceptors
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits: {memory: 128Mi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tekton-dashboard
+  namespace: tekton-pipelines
+spec:
+  template:
+    spec:
+      containers:
+        - name: tekton-dashboard
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {memory: 256Mi}

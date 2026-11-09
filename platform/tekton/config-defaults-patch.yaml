@@ -1,0 +1,9 @@
+# Defaults de ejecución de TaskRuns/PipelineRuns (RNF5): timeout por defecto de 45 min
+# (el oficial es 60) para no dejar runs colgados.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-defaults
+  namespace: tekton-pipelines
+data:
+  default-timeout-minutes: "45"
